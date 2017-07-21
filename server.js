@@ -46,18 +46,18 @@ app.use(bodyParser.urlencoded({
 }));*/
 
 // Database (divesite)configuration with mongoose
-mongoose.connect("mongodb://localhost/divemongoose", { useMongoClient: true });
-const db = mongoose.connection;
+var db = process.env.MONGOD_URI || "mongodb://localhost/divemongoose";
 
-// show mongoose errors is mongoose is not open
-db.on("error", function(error) {
-    console.log("Mongoose Error: ", error);
+mongoose.connect(db, function(error) {
+
+    if(error) {
+        throw error;
+    }
+    else {
+        console.log("connected to mongoose");
+    }
 });
 
-// once db open in mongoose, show success message
-db.once("open", function() {
-    console.log("Mongoose connection successful.");
-});
 
 // A GET request to scrape the divebuddy website
 app.get("/scrape", function(req, res) {
