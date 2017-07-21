@@ -44,9 +44,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.urlencoded({
     extended: true
 }));*/
-
+//mongodb://heroku_gr4pth5x:rqgj1rb0ds6995q8rhk8e098bf@ds113063.mlab.com:13063/heroku_gr4pth5x
 // Database (divesite)configuration with mongoose
-var db = process.env.MONGOD_URI || "mongodb://localhost/divemongoose";
+var db = "mongodb://heroku_gr4pth5x:rqgj1rb0ds6995q8rhk8e098bf@ds113063.mlab.com:13063/heroku_gr4pth5x";
 
 mongoose.connect(db, function(error) {
 
