@@ -8,6 +8,18 @@ const exphbs = require("express-handlebars");
 //port
 const PORT = process.env.PORT || 3000;
 
+const db = process.env.MONGODB_URI || "mongodb://localhost/divemongoose";
+
+mongoose.connect(db, function(error) {
+
+    if(error) {
+        throw error;
+    }
+    else {
+        console.log("connected to mongoose");
+    }
+});
+
 // Require Note and Article js file inside models dir
 const Note = require("./models/Note.js");
 const Article = require("./models/Article.js");
@@ -46,17 +58,7 @@ app.use(bodyParser.urlencoded({
 }));*/
 //mongodb://heroku_gr4pth5x:rqgj1rb0ds6995q8rhk8e098bf@ds113063.mlab.com:13063/heroku_gr4pth5x
 // Database (divesite)configuration with mongoose
-var db = "mongodb://heroku_gr4pth5x:rqgj1rb0ds6995q8rhk8e098bf@ds113063.mlab.com:13063/heroku_gr4pth5x";
 
-mongoose.connect(db, function(error) {
-
-    if(error) {
-        throw error;
-    }
-    else {
-        console.log("connected to mongoose");
-    }
-});
 
 
 // A GET request to scrape the divebuddy website
